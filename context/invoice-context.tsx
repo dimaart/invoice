@@ -12,7 +12,7 @@ interface InvoiceContextType {
     removeItem: (index: number) => void;
     updateItem: (
         index: number, 
-        field: keyof InvoiceItem, 
+        field: string, 
         value: string | number
     ) => void;
 }
