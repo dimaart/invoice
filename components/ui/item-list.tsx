@@ -11,7 +11,7 @@ import { Button } from "./button";
 import InvoiceItem from "./invoice-item";
 import InvoiceItemLabor from "../invoice-item-labor";
 import { useInvoice } from "@/context/invoice-context";
-import { items } from "./invoice-preview";
+
 
 
 export default function ItemList() {
@@ -32,7 +32,7 @@ export default function ItemList() {
      </CardHeader>
         <CardContent className="space-y-4">
       {invoice.items.map((item, index) => {
-        if (typeof item.hours === 'number') {
+        if (item.type === 'labor') {
           return (
             <InvoiceItemLabor
               key={item.id}
@@ -53,8 +53,7 @@ export default function ItemList() {
         }
       })}
 
-        
-        </CardContent> 
+      </CardContent>
     </Card>
 
   );

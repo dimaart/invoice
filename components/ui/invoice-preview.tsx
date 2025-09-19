@@ -1,4 +1,4 @@
-import { format } from "path";
+import type { InvoiceItem } from "@/types/invoice";
 import { Button } from "./button";
 import { Card, CardContent } from "./card";
 import { formatCurrency, formatDate } from "@/utils/formatters";
@@ -106,23 +106,23 @@ export default function InvoicePreview({onBack}:InvoicePreviewProps) {
                         <th className="text-left py-2 px-4 border-b">Total</th>
                     </tr>
                 </thead>
-                <tbody>{invoice.items && invoice.items.map((item: unknown, count :number=0) => (
-                    <tr key={item.id} className="border-b">
-                        <td className="py-2 px-4 border-b">{count + 1}</td>
-                        <td className="py-2 px-4 border-b">{item.description}</td>
-                                                    <td className="py-2 px-4 border-b">{item.type === 'part' ? item.quantity : item.hours}</td>
-                                                    <td className="py-2 px-4 border-b">
-                                                        {item.type === 'part'
-                                                            ? `$${typeof item.price === "number" ? item.price.toFixed(2) : "0.00"}`
-                                                            : `$${typeof item.rate === "number" ? item.rate.toFixed(2) : "0.00"}`}
-                                                    </td>
-                                                    <td className="py-2 px-4 border-b">
-                                                        {item.type === 'part'
-                                                            ? `$${(item.quantity * item.price).toFixed(2)}`
-                                                            : `$${(item.hours * item.rate).toFixed(2)}`}
-                                                    </td>
-                    </tr>
-                ))}</tbody>
+                                <tbody>{invoice.items && invoice.items.map((item: InvoiceItem, idx: number) => (
+                                        <tr key={item.id} className="border-b">
+                                                <td className="py-2 px-4 border-b">{idx + 1}</td>
+                                                <td className="py-2 px-4 border-b">{item.description}</td>
+                                                <td className="py-2 px-4 border-b">{item.type === 'part' ? item.quantity : item.hours}</td>
+                                                <td className="py-2 px-4 border-b">
+                                                    {item.type === 'part'
+                                                        ? `$${typeof item.price === "number" ? item.price.toFixed(2) : "0.00"}`
+                                                        : `$${typeof item.rate === "number" ? item.rate.toFixed(2) : "0.00"}`}
+                                                </td>
+                                                <td className="py-2 px-4 border-b">
+                                                    {item.type === 'part'
+                                                        ? `$${(item.quantity * item.price).toFixed(2)}`
+                                                        : `$${(item.hours * item.rate).toFixed(2)}`}
+                                                </td>
+                                        </tr>
+                                ))}</tbody>
             </table> 
             
             {/* Totals */}
