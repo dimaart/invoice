@@ -13,14 +13,6 @@ import InvoiceItemLabor from "../invoice-item-labor";
 import { useInvoice } from "@/context/invoice-context";
 import { items } from "./invoice-preview";
 
-// export const items = [
-//   { id: 1, name: "Oil Change", quantity: 1, price: 29.99 },
-//   { id: 2, name: "Tire Rotation", quantity: 4, price: 19.99 },
-//   { id: 3, name: "Brake Inspection", quantity: 1, price: 49.99 },
-//   { id: 4, name: "Battery Replacement", quantity: 1, price: 89.99 },
-//   { id: 5, name: "Engine Tune-Up", quantity: 1, price: 199.99 },
-//   { id: 6, name: "Wheel Alignment", quantity: 1, rate: 150 },
-// ];
 
 export default function ItemList() {
   const {invoice, addItem, addItemLabor} = useInvoice();

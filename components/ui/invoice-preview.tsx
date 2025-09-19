@@ -81,8 +81,8 @@ export default function InvoicePreview({onBack}:InvoicePreviewProps) {
                     <p className="text-gray-600">{invoice.toPhone}</p>
                 </div>
             </div>
- {/* Vehicle details */}
-            
+
+            {/* Vehicle details */}            
             <div className="grid grid-cols-2 gap-8 mb-8">
                
                 <div>
