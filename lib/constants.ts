@@ -31,4 +31,5 @@ export const initialInvoiceData: InvoiceData = {
     vehicleYear: "",
     vehicleVIN: "",
     vehicleMileage: "",
+    laborHours: 0
 }
