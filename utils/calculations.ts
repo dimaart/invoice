@@ -1,4 +1,4 @@
-import type { InvoiceData } from "@/types/invoice";
+import type { InvoiceData, InvoiceItem } from "@/types/invoice";
 
 export const calculateTotals = (items: InvoiceItem[],taxRate: number | string) =>{
     const subtotal = items.reduce((sum, item) => {
