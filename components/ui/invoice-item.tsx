@@ -2,9 +2,7 @@ import { Trash2 } from "lucide-react";
 import { Button } from "./button";
 import { Input } from "./input";
 import { Label } from "./label";
-import { use } from "react";
 import { useInvoice } from "@/context/invoice-context";
-import { items } from "./invoice-preview";
 
 interface InvoiceItemProps {
     item: {
