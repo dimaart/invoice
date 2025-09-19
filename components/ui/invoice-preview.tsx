@@ -106,7 +106,7 @@ export default function InvoicePreview({onBack}:InvoicePreviewProps) {
                         <th className="text-left py-2 px-4 border-b">Total</th>
                     </tr>
                 </thead>
-                <tbody>{invoice.items && invoice.items.map((item: any, count :number=0) => (
+                <tbody>{invoice.items && invoice.items.map((item: unknown, count :number=0) => (
                     <tr key={item.id} className="border-b">
                         <td className="py-2 px-4 border-b">{count + 1}</td>
                         <td className="py-2 px-4 border-b">{item.description}</td>
