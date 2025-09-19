@@ -4,6 +4,8 @@ import { Input } from "./input";
 import { Label } from "./label";
 import { useInvoice } from "@/context/invoice-context";
 
+import type { InvoiceItem } from "@/types/invoice";
+
 interface InvoiceItemProps {
     item: {
         description: string;
@@ -22,20 +24,15 @@ export default function InvoiceItem({
 }: InvoiceItemProps) {
     const { removeItem, updateItem } = useInvoice();
 
-    const handleQuantityChange = (value : string) => {
-        if(value === ""){
-            updateItem(index, "quantity", "");
-
-        } else {
-            const numValue = Number.parseInt(value);
-            if(!isNaN(numValue) && numValue >= 0){
-                updateItem(index, "quantity", numValue);
-            }
+    const handleQuantityChange = (value: string) => {
+        const numValue = Number(value);
+        if (!isNaN(numValue) && numValue >= 0) {
+            updateItem(index, "quantity", numValue);
         }
     };
 
     const handleQuantityBlur = () => {
-        if(item.quantity === "" || item.quantity === 0){
+        if (item.quantity === 0) {
             updateItem(index, "quantity", 1);
         }
     };
