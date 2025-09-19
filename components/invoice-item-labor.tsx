@@ -7,59 +7,45 @@ import { useInvoice } from "@/context/invoice-context";
 import { Button } from "./ui/button";
 
 
-interface InvoiceItemProps {
+
+interface InvoiceItemLaborProps {
     item: {
         description: string;
-        quantity: number;
-        price: number;
-        amount: number;
         hours: number;
+        rate: number;
+        amount: number;
     };
     index: number;
     canRemove: boolean;
 }
 
-export default function InvoiceItem({ 
+export default function InvoiceItemLabor({ 
     item, 
     index, 
     canRemove, 
-}: InvoiceItemProps) {
+}: InvoiceItemLaborProps) {
     const { removeItem, updateItem } = useInvoice();
 
-    const handleQuantityChange = (value : string) => {
-        if(value === ""){
-            updateItem(index, "quantity", "");
 
-        } else {
-            const numValue = Number.parseInt(value);
-            if(!isNaN(numValue) && numValue >= 0){
-                updateItem(index, "quantity", numValue);
-            }
-        }
-    };
-
-    const handleQuantityBlur = () => {
-        if(item.quantity === "" || item.quantity === 0){
-            updateItem(index, "quantity", 1);
+    const handleHoursChange = (value: string) => {
+        const numValue = Number(value);
+        if (!isNaN(numValue) && numValue >= 0) {
+            updateItem(index, "hours", numValue);
         }
     };
 
     const handleRateBlur = () => {
-        if(item.price === "" || item.price === 0){
+        if (item.rate === 0) {
             updateItem(index, "rate", 0);
         }
     };
 
-    const handleRateChange = (value : string) => {
-        if(value === ""){
-            updateItem(index, "rate", "");
-        } else {
-            const numValue = Number.parseFloat(value);
-            if(!isNaN(numValue) && numValue >= 0){
-                updateItem(index, "rate", numValue);
-            }
+    const handleRateChange = (value: string) => {
+        const numValue = Number(value);
+        if (!isNaN(numValue) && numValue >= 0) {
+            updateItem(index, "rate", numValue);
         }
-    };       
+    };
 
 
   return (
@@ -76,9 +62,10 @@ export default function InvoiceItem({
                 <Label>Hours</Label>
                 <Input
                   placeholder="Hours"
+                  type="number"
+                  min={"0"}
                   value={item.hours}
-                  onChange={(e) => updateItem(index, "hours", Number(e.target.value))}
-                  onBlur={handleQuantityBlur} 
+                  onChange={(e) => handleHoursChange(e.target.value)}
                 />
             </div>
             <div className="col-span-2">
@@ -87,7 +74,7 @@ export default function InvoiceItem({
                     min={"0.00"}
                     step={"0.01"}
                     type="number" 
-                    value={item.price}
+                    value={item.rate}
                     onChange={(e) => handleRateChange(e.target.value)}
                     onBlur={handleRateBlur}
                 />
