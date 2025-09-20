@@ -25,7 +25,7 @@ export default function Home() {
           <h1>Invoice Generator</h1>
           <p className="text-gray-600">Create and manage your invoices easily</p>
         </div>
-        <Button onClick={() => setShowPreview(true)}>
+        <Button id="preview-invoice-button" onClick={() => setShowPreview(true)}>
           <Eye className="mr-2 h-4 w-4" />
           Preview Invoice
         </Button>
